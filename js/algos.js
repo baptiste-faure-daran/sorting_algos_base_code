@@ -31,9 +31,13 @@ function distanceFromGrenoble(city) {
 // j is the index of the second city
 function swap(i, j) {
 
-
   displayBuffer.push(['swap', i, j]); // Do not delete this line (for display)
   console.log("swap - implement me !");
+
+  let temp = csvData[i];
+  csvData[i] = csvData[j];
+  csvData[j] = temp;
+
 }
 
 // Returns true if city with index i in csvData is closer to Grenoble than city with index j
@@ -53,23 +57,38 @@ function isLess(i, j) {
 
 
 function insertsort() {
-  for (let i = 1; i < csvData.length; i++) {
-    for (let j = 1; j > 0 && isLess(j, j - 1); j--) {
-      swap(j, j-1); 
-    }
-  }
   console.log("insertsort - implement me !");
 }
 
 function selectionsort() {
+  let n = csvData.length;
+  for (let i = 0; i = n; i++) {
+    // trouver le plus petit nombre
+      let min = i;
+      for(let j = 0; j < n; j++) {
+        if(csvData[j] < csvData[min]) {
+          min = j;
+        }
+      }
+      if(min != i) {
+        let tpm = csvData[i];
+        csvData[i] = csvData[min];
+        csvData[min] = temp;
+      }
+  }
+
   console.log("selectionsort - implement me !");
+}
+
+function bubblessort() {
+
 }
 
 function bubblesort() {
   var changed = true, passage = 0;
   while (changed) {
     changed = false;
-    for (var i = 0; i < csvData.length - passage - 1; i++) {
+    for (let i = 0; i < csvData.length - passage - 1; i++) {
       if (!isLess(i, i + 1)) {
         swap(i + 1, i)
         changed = true;
