@@ -53,6 +53,11 @@ function isLess(i, j) {
 
 
 function insertsort() {
+  for (let i = 1; i < csvData.length; i++) {
+    for (let j = 1; j > 0 && isLess(j, j - 1); j--) {
+      swap(j, j-1); 
+    }
+  }
   console.log("insertsort - implement me !");
 }
 
