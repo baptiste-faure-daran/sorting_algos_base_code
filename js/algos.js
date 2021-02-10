@@ -57,28 +57,31 @@ function isLess(i, j) {
 
 
 function insertsort() {
+  for (let i = 1; i < csvData.length; i++) {
+    for (let k = i; k > 0 && isLess(k, k - 1); k--) {
+      swap(k, k - 1);
+    }
+  }
+
   console.log("insertsort - implement me !");
 }
 
 function selectionsort() {
-  let n = csvData.length;
-  for (let i = 0; i = n; i++) {
-    // trouver le plus petit nombre
-      let min = i;
-      for(let j = 0; j < n; j++) {
-        if(csvData[j] < csvData[min]) {
-          min = j;
-        }
+  console.log(csvData);
+  for (let i = 0; i <= csvData.length - 1; i++) {
+    let min = csvData[i].dist;
+    for (let j = 0; j <= csvData.length - 1; j++) {
+      if (csvData[j].dist < min) {
+        min = csvData[j].dist;
+        swap(j, i);
+        console.log('swapping ' + j + " with " + i);
       }
-      if(min != i) {
-        let tpm = csvData[i];
-        csvData[i] = csvData[min];
-        csvData[min] = temp;
-      }
-  }
 
-  console.log("selectionsort - implement me !");
+    }
+
+  }
 }
+
 
 function bubblessort() {
 
@@ -114,7 +117,29 @@ function heapsort() {
 
 function quicksort() {
   console.log("quicksort - implement me !");
+  let n = csvData.length
+  quickSort(n, 0, n - 1)
+  console.log(csvData)
 }
+
+function quickSort(n, gauche, droite) {
+  let mur = gauche;
+  let pivot = droite;
+  console.log('pivot', pivot, 'mur', mur)
+
+  for (let i = mur; i <= pivot; i++) {
+    if (isLess(i, pivot) && i >= mur) {
+      swap(i, mur)
+      mur++
+    }
+  }
+  console.log('pivot', pivot, 'mur', mur)
+  swap(pivot, mur)
+  if (gauche < mur - 1) quickSort(n, gauche, mur - 1)
+  if (mur + 1 < droite) quickSort(n, mur + 1, droite)
+}
+
+
 function quick3sort() {
   console.log("quick3sort - implement me !");
 }
